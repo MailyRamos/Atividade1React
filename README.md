@@ -88,3 +88,27 @@ npm run dev
 ```
 
 Depois é só abrir o endereço local exibido no terminal (geralmente `http://localhost:5173`).
+
+## 📁 Estrutura do projeto
+
+```text
+Atividade-1-React-JS/
+│
+├── 📂 variaveis/
+│   └── 📂 src/
+│       └── App.jsx
+│
+├── 📂 componentes/
+│   └── 📂 src/
+│       ├── App.jsx
+│       └── DadosUsuario.jsx
+│
+├── 📂 props/
+│   └── 📂 src/
+│       ├── App.jsx
+│       └── Pessoa.jsx
+│
+└── 📂 jsx_componente/
+    └── 📂 src/
+        ├── App.jsx
+        └── Carro.jsx

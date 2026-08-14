@@ -1,16 +1,75 @@
-# React + Vite
+# Exercício 3 — Props
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Enunciado
 
-Currently, two official plugins are available:
+> Crie um projeto com o componente denominado `Pessoa.jsx` que mostre nome, idade, cidade e endereço.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Passo a passo
 
-## React Compiler
+### 1. Criação do projeto
+```bash
+npm create vite@latest props -- --template react
+cd props
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Criação do componente `Pessoa.jsx`
+Foi criado o arquivo `src/Pessoa.jsx` para concentrar a lógica de exibição dos dados da pessoa.
 
-## Expanding the ESLint configuration
+### 3. Definição das props com valores padrão
+O componente recebe `nome`, `idade`, `cidade` e `endereco` via **props**, com valores padrão definidos diretamente no destructuring dos parâmetros:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+const Pessoa = ({
+  nome = "Alana",
+  idade = 17,
+  cidade = "Santo André - SP",
+  endereco = "Rua Alexandria"
+}) => {
+  return (
+    <div>
+      <p>Nome: {nome}</p>
+      <p>Idade: {idade}</p>
+      <p>Cidade: {cidade}</p>
+      <p>Endereço: {endereco}</p>
+    </div>
+  )
+}
+
+export default Pessoa
+```
+
+### 4. Importação do componente em `App.jsx`
+No `src/App.jsx`, o componente `Pessoa` é importado e renderizado como filho do componente principal:
+
+```jsx
+import './App.css'
+import Pessoa from './Pessoa'
+
+function App() {
+  return (
+    <div className='App'>
+      <h3>Pessoa</h3>
+      <Pessoa/>
+    </div>
+  )
+}
+
+export default App
+```
+
+Como nenhuma prop é passada explicitamente na tag `<Pessoa/>`, o componente usa os valores padrão definidos no passo anterior. (Para testar com outros dados, bastaria escrever, por exemplo, `<Pessoa nome="João" idade={25} cidade="São Paulo" endereco="Av. Paulista" />`.)
+
+### 5. Renderização na tela
+O `main.jsx` renderiza `App`, que renderiza `Pessoa`, exibindo os dados da pessoa na página.
+
+### 6. Execução
+```bash
+npm run dev
+```
+Acesse `http://localhost:5173` para ver os dados da pessoa.
+
+## Conceitos praticados
+- Passagem de dados entre componentes via **props**.
+- Destructuring de props com valores padrão.
+- Relação componente-pai (`App`) e componente-filho (`Pessoa`).

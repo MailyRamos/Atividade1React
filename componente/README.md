@@ -1,16 +1,75 @@
-# React + Vite
+# Exercício 2 — Componente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Enunciado
 
-Currently, two official plugins are available:
+> Crie um projeto com um componente denominado `DadosUsuario.jsx` que mostre: Nome, Sobrenome, e-mail, Sexo e Idade.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Passo a passo
 
-## React Compiler
+### 1. Criação do projeto
+```bash
+npm create vite@latest componentes -- --template react
+cd componentes
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Criação do componente `DadosUsuario.jsx`
+Foi criado o arquivo `src/DadosUsuario.jsx`, separado do `App.jsx`, seguindo o princípio de componentização do React (cada parte da interface em seu próprio arquivo).
 
-## Expanding the ESLint configuration
+### 3. Definição das props com valores padrão
+O componente recebe os dados do usuário via **props**, com valores padrão definidos por destructuring, para que funcione mesmo sem receber nada de fora:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+const DadosUsuario = ({
+  nome = "Maily",
+  sobreNome = "Ramos",
+  email = "maily.ramos@aluno.senia.br",
+  sexo = "Feminino",
+  idade = 17
+}) => {
+  return (
+    <div>
+      <p>Nome: {nome}</p>
+      <p>Sobrenome: {sobreNome}</p>
+      <p>E-mail: {email}</p>
+      <p>Sexo: {sexo}</p>
+      <p>Idade: {idade}</p>
+    </div>
+  )
+}
+
+export default DadosUsuario
+```
+
+### 4. Importação do componente em `App.jsx`
+No arquivo `src/App.jsx`, o componente é importado e renderizado dentro da aplicação:
+
+```jsx
+import './App.css'
+import DadosUsuario from './DadosUsuario'
+
+function App() {
+  return (
+    <div className='App'>
+      <h3>Dados de Usuário</h3>
+      <DadosUsuario/>
+    </div>
+  )
+}
+
+export default App
+```
+
+### 5. Renderização na tela
+O `main.jsx` renderiza `App`, que por sua vez renderiza `DadosUsuario`, exibindo os dados do usuário na página.
+
+### 6. Execução
+```bash
+npm run dev
+```
+Acesse `http://localhost:5173` para ver os dados do usuário.
+
+## Conceitos praticados
+- Criação de um componente em arquivo separado (`DadosUsuario.jsx`).
+- Composição de componentes (`App` renderiza `DadosUsuario`).
+- Props com valores padrão via destructuring.
